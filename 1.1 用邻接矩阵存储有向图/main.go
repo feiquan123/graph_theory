@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
@@ -24,19 +23,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for i := 0; scanner.Scan(); i++ {
 		a, b := 0, 0
-		text := scanner.Text()
-		textArr := strings.SplitN(text, " ", 2)
-		if len(textArr) != 2 {
-			log.Fatalf("invalid rows[%d]: %s\n", i, text)
-		}
-		a, err = strconv.Atoi(textArr[0])
-		if err != nil {
-			log.Fatalln("parse a error, ", err)
-		}
-		b, err = strconv.Atoi(textArr[1])
-		if err != nil {
-			log.Fatalln("parse a error, ", err)
-		}
+		fmt.Sscan(scanner.Text(), &a, &b)
 		if a == 0 && b == 0 {
 			break
 		}
